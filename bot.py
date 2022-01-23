@@ -3,7 +3,7 @@ import pytz
 import os
 from flask import Flask, request
 from datetime import datetime
-from constants import DATE_FORMAT, TIME_FORMAT
+from constants import DATE_FORMAT, HELP_MESSAGE, TIME_FORMAT
 
 TOKEN = os.environ['TOKEN']
 
@@ -91,6 +91,10 @@ def schedule(message):
 @bot.message_handler(commands=['timezones'])
 def show_timezones(message):
 	bot.send_message(message.chat.id, '\n'.join(timezones))
+
+@bot.message_handler(commands=['help'])
+def help(message):
+	bot.reply_to(message, HELP_MESSAGE)
 
 @bot.message_handler(func=lambda message: True)
 def echo_all(message):
