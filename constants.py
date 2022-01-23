@@ -1,3 +1,2 @@
-API_KEY = "5258564760:AAGr_7FJ0wShRBH1nDbdYFCfli-xbAkgyqk"
 DATE_FORMAT = "%d-%m-%Y"
 TIME_FORMAT = "%H:%M"
