@@ -1,10 +1,25 @@
 import telebot
 import pytz
-from telebot import types
+import os
+from flask import Flask, request
 from datetime import datetime, tzinfo
 from constants import API_KEY, DATE_FORMAT, TIME_FORMAT
 
 bot = telebot.TeleBot(API_KEY, parse_mode=None)
+server = Flask(__name__)
+
+# SERVER SIDE 
+@server.route('/' + API_KEY, methods=['POST'])
+def getMessage():
+   bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+   return "!", 200
+@server.route("/")
+def webhook():
+   bot.remove_webhook()
+   bot.set_webhook(url='<HEROKU Web URL>' + API_KEY)
+   return "!", 200
+if __name__ == "__main__":
+   server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 
 timezones = []
 timezones_datetime = []
