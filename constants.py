@@ -1,4 +1,5 @@
 DATE_FORMAT = "%d-%m-%Y"
+LONG_DATE_FORMAT = "%d %B %Y"
 TIME_FORMAT = "%H:%M"
 
 HELP_MESSAGE = """Easy configuration if you are not Jose or dumb:

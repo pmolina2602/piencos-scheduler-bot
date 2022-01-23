@@ -3,7 +3,7 @@ import pytz
 import os
 from flask import Flask, request
 from datetime import datetime
-from constants import DATE_FORMAT, HELP_MESSAGE, TIME_FORMAT
+from constants import DATE_FORMAT, HELP_MESSAGE, TIME_FORMAT, LONG_DATE_FORMAT
 
 TOKEN = os.environ['TOKEN']
 
@@ -17,7 +17,7 @@ def get_datetimes_message(timezones, datetime_input):
 		timezone_info = pytz.timezone(timezone)
 		timezone_info = datetime_input.astimezone(timezone_info)
 		timezone_info_message = timezone_info.replace(tzinfo=None)
-		timezone_info_message = timezone + ': ' + datetime.strftime(timezone_info_message, DATE_FORMAT + ' ' + TIME_FORMAT)
+		timezone_info_message = timezone + ': ' + datetime.strftime(timezone_info_message, LONG_DATE_FORMAT + ' at ' + TIME_FORMAT + ' Hrs')
 
 		if (timezone_info_message in(timezones_datetime)):
 			continue
