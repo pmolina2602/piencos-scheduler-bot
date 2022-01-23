@@ -90,7 +90,10 @@ def schedule(message):
 
 @bot.message_handler(commands=['timezones'])
 def show_timezones(message):
-	bot.send_message(message.chat.id, '\n'.join(timezones))
+	if not timezones:
+		bot.reply_to(message, "No time zones registered")
+	else:
+		bot.send_message(message.chat.id, '\n'.join(timezones))
 
 @bot.message_handler(commands=['help'])
 def help(message):
